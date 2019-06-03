@@ -1,0 +1,28 @@
+server:
+  port: 6666
+  servlet:
+    context-path: /services
+spring:
+  application:
+    name: EntryNode
+  profiles:
+    active: prd
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  messages:
+    encoding: UTF-8
+eureka:
+  instance:
+    hostname: ${spring.cloud.client.ip-address}
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
+    status-page-url: http://${eureka.instance.hostname}:${server.port}${server.servlet.context-path}/actuator/info
+    health-check-url: http://${eureka.instance.hostname}:${server.port}${server.servlet.context-path}/actuator/health
+  client:
+    register-with-eureka: true
+    feth-registry: true
+    service-url:
+      defaultZone: http://localhost:10000/eureka
