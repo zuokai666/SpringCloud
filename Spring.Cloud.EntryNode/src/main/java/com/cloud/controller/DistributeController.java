@@ -27,14 +27,14 @@ public class DistributeController {
 	private ObjectMapper om = new ObjectMapper();
 	
 	@Autowired
-	@Qualifier("customRestTemplate")
-	private RestTemplate restTemplate;
+	@Qualifier("loadBalancedRestTemplate")
+	private RestTemplate loadBalancedRestTemplate;
 	
 	@RequestMapping(path="/addUser",produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public String distrubute(@RequestBody String request){
 		log.info("接收报文：{}", request);
-		String url = "http://CLOUDNODE1/services/user/add";
+		String url = "http://USER-SERVICE/services/user/add";
 		JsonNode requestNode = null;
 		try {
 			requestNode = om.readValue(request, JsonNode.class);
@@ -45,7 +45,7 @@ public class DistributeController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		ObjectNode data = restTemplate.postForEntity(url, requestNode, ObjectNode.class).getBody();
+		ObjectNode data = loadBalancedRestTemplate.postForEntity(url, requestNode, ObjectNode.class).getBody();
 		log.info("返回报文：{}", data.toString());
 		return data.toString();
 	}

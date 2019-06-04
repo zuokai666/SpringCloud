@@ -4,7 +4,7 @@ server:
     context-path: /services
 spring:
   application:
-    name: CloudNode1
+    name: USER-SERVICE
   profiles:
     active: prd
   http:

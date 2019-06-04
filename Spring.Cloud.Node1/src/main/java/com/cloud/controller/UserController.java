@@ -26,7 +26,7 @@ public class UserController {
 		ObjectNode data = om.createObjectNode();
 		data.put("success", "true");
 		data.put("message", "操作成功");
-		data.put("data", request);
+		data.put("server", "Node1");
 		return data.toString();
 	}
 }

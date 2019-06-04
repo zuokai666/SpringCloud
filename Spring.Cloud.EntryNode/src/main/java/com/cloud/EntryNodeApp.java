@@ -13,7 +13,7 @@ public class EntryNodeApp {
 	
 	@Bean
 	@LoadBalanced
-	public RestTemplate customRestTemplate(){
+	public RestTemplate loadBalancedRestTemplate(){
 		return new RestTemplate();
 	}
 	
