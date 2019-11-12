@@ -25,6 +25,4 @@ eureka:
     health-check-url: http://${eureka.instance.hostname}:${server.port}${server.servlet.context-path}/actuator/health
   client:
     register-with-eureka: false
-    feth-registry: false
-    service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+    fetch-registry: false
