@@ -14,6 +14,8 @@ spring:
       force: true
   messages:
     encoding: UTF-8
+  config:
+    name: bootstrap
 eureka:
   server:
     enable-self-preservation: false #关闭自我保护机制
@@ -25,6 +27,6 @@ eureka:
     health-check-url: http://${eureka.instance.hostname}:${server.port}${server.servlet.context-path}/actuator/health
   client:
     register-with-eureka: false
-    feth-registry: false
+    fetch-registry: false
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
